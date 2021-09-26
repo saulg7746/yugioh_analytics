@@ -23,6 +23,6 @@ public class CardLibrary{
 	public static MainDeckMonster ElementalHEROShadowMist = new MainDeckMonster("Elemental HERO Shadow Mist", 4, CardConstants.DARK, 1000, 1500,
 			new HashSet<String>(Arrays.asList(CardConstants.WARRIOR)),
 			new ArrayList<Effect>(Arrays.asList(
-					new OptionalEffect(	new Action("Send", "Anywhere", "GY"), 
+					new OptionalEffect(	new Action("sent", "this card", "Anywhere", "GY"), 
 										new Action("Add", HeroSearch , "Deck", "Hand")))));
 }

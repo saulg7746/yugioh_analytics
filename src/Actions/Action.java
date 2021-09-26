@@ -19,10 +19,11 @@ public class Action {
 	String 	locationFrom 	= "";	// Example Hand
 	String 	LocationTo 		= "";	// Example GY (Or anywhere its marked to go , more details on this later)
 	
-	Card 	card 					= null;	// Example "Elemental HERO Shadow Mist"
-	SpellSearchCriteria 	spell 	= null;
-	MonsterSearchCriteria	monster = null;
-	TrapSearchCriteria		trap 	= null;
+	Card 	card 						= null;	// Example "Elemental HERO Shadow Mist"
+	SpellSearchCriteria 	spell 		= null;
+	MonsterSearchCriteria	monster 	= null;
+	String 					thisCard 	= "";
+	TrapSearchCriteria		trap 		= null;
 
 	
 	Action(){};
@@ -45,6 +46,12 @@ public class Action {
 		this.LocationTo = to;
 		System.out.println(monster.toString());
 	}
+	public Action(String verb, String thisCard, String from, String to){
+		this.verb = verb;
+		this.thisCard  = thisCard;
+		this.locationFrom = from;
+		this.LocationTo = to;
+	}
 	public Action(String verb, String from, String to){
 		this.verb = verb;
 		card = null;
@@ -56,6 +63,7 @@ public class Action {
 		this.verb = other.verb;
 		this.locationFrom = other.locationFrom;
 		this.LocationTo = other.LocationTo;
+		this.thisCard = other.thisCard;
 		System.out.println("Action(copy): I was invoked");
 		if(other.spell != null) {
 			System.out.println("Action(copy): I was invoked AND COPIED A SPELL");
@@ -82,10 +90,15 @@ public class Action {
 	public String toString() {
 		String ret = "";
 		ret += verb + " ";
+		
+		if(locationFrom != "" && locationFrom == "Anywhere") {
+			return "If " + thisCard + " is "+ verb + " to the " + LocationTo;
+		}
+		
 		if(this.spell != null) {
-			ret += spell.toString();
+			ret +=  "1 " + spell.toString() + " spell";
 		}else if(this.monster != null) {
-			ret += monster.toString();
+			ret += "1 " + monster.toString() + " monster";
 		}
 		ret += " from " + locationFrom + " to " + LocationTo;
 		
