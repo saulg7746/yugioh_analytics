@@ -22,7 +22,9 @@ public class main {
 //		System.out.println(mon1.getNameContains() + " " + mon1.getNameExact() + " " + mon1.getAttribute());
 		
 		MainDeckMonster mist = new MainDeckMonster(CardLibrary.ElementalHEROShadowMist);
+		MainDeckMonster faris = new MainDeckMonster(CardLibrary.VisionHEROFaris);
 		
 		System.out.println(mist.toString());
+		System.out.println(faris.toString());
 	}	
 }

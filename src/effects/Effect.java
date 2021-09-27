@@ -11,17 +11,12 @@ public abstract class Effect {
 	Action effect = null;
 	
 	
-	Effect(){
-		System.out.println("Effect(default) : I was invoked");
-
-	};
+	Effect(){};
 	Effect(Effect other){
 		
 		this.spellSpeed = other.spellSpeed;
 		this.effectType = other.effectType;
 		this.effect = new Action (other.effect);
-		System.out.println("Effect(copy) : I was invoked");
-
 	};
 	
 	

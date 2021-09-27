@@ -14,7 +14,7 @@ public class MainDeckMonster extends Monster{
 	
 	
 	
-	public MainDeckMonster(String name, int lvl, String attr, int atk, int def, Set<String> type, ArrayList<Effect> effs) {
+	public MainDeckMonster(String name, int lvl, String attr, int atk, int def, Set<String> type, ArrayList<Effect> effs, boolean SOPT, boolean HOPT) {
 		this.name = name;
 		this.level = lvl;
 		this.rank = -1;
@@ -23,6 +23,11 @@ public class MainDeckMonster extends Monster{
 		this.defense = def;
 		this.type = new HashSet<String>(type);
 		this.effects = new ArrayList<Effect>(effs);
+		this.SOPT = SOPT;
+		this.HOPT = HOPT;
+		if(lvl < 5 )
+			this.canBeNormalSummoned = true;
+		
 	}
 	
 	public MainDeckMonster(MainDeckMonster m)
@@ -37,6 +42,19 @@ public class MainDeckMonster extends Monster{
 		this.extraDeckMonster = false;
 		this.canBeNormalSummoned = false;
 		this.effects = new ArrayList<Effect>(m.effects); // String[] will be the effect plus any condition
+	}
+	
+	public String getLocation() {
+		return this.location;
+	}
+	public void setLocation(String newLocation) {
+		this.location = newLocation;
+	}
+	public String getQueuedLocation() {
+		return this.queuedLocation;
+	}
+	public void setQueuedLocation(String newQueuedLocation) {
+		this.queuedLocation = newQueuedLocation;
 	}
 	
 	public String toString() {

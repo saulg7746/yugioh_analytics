@@ -10,7 +10,8 @@ public class SpellSearchCriteria{
 	String textContains = "";
 	
 	SpellSearchCriteria(){};
-	public SpellSearchCriteria(String nameLike){nameExact = nameLike;};
+	public SpellSearchCriteria(String nameLike){nameContains = nameLike;};
+	public SpellSearchCriteria(String nameLike, String type){nameContains = nameLike; spellType = type;};
 	public SpellSearchCriteria(SpellSearchCriteria other){
 		this.nameContains = other.nameContains;
 		this.nameExact = other.nameExact;
@@ -36,7 +37,7 @@ public class SpellSearchCriteria{
 		if(nameExact != "")
 			return nameExact;
 		
-		ret += "\'" + nameContains + " \'";
+		ret += spellType + " \'" + nameContains + "\'";
 		
 		return ret;
 	}

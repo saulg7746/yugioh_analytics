@@ -15,6 +15,7 @@ public class CardConstants {
 	public static final String OPTIONAL_TRIGGER_EFFECT 		= "Optional Trigger Effect";
 	public static final String MANDATORY_TRIGGER_EFFECT 	= "Mandatory Trigger Effect";
 	public static final String QUICK_EFFECT 				= "Quick Effect";
+	public static final String QUICK_PLAY	 				= "Quick Play";
 	public static final String SUMMON_MONSTER_EFFECT 		= "Summon Monster Effect";
 	
 	
@@ -53,6 +54,9 @@ public class CardConstants {
 	public static final String WYRM 			= "Wyrm";
 	public static final String ZOMBIE 			= "Zombie";
 	
+	public static final String TUNER			= "Tuner";
+	public static final String NON_TUNER		= "Non-Tuner";
+	
 	// GameSate Constants
 	public static final String GY 			= "GY";
 	public static final String FIELD 		= "Field";
@@ -65,14 +69,22 @@ public class CardConstants {
 	public static final String DISCARD 		= "Discard";
 	public static final String ACTIVATE 	= "Activate";
 	public static final String EQUIP 		= "Equip";
+	public static final String ADD			= "Add";
+	public static final String SENT			= "Sent";
+	public static final String ANYWHERE		= "Anywhere";
+	public static final String PLACE		= "Place";
 	
 	
 	// Action Verbs (summon type)
 	public static final String SPECIAL_SUMMON 	= "Special Summon"; // can also be an effect 
+	public static final String SPECIAL_SUMMONED = "Special Summoned"; // can also be an effect 
 	public static final String NORMAL_SUMMON 	= "Normal Summon";
 	public static final String FUSION_SUMMON 	= "Fusion Summon";
 	public static final String SYNCHRO_SUMMON 	= "Synchro Summon";
 	public static final String LINK_SUMMON 		= "Link Summon";
+	
+	// Card Identifiers 
+	public static final String THIS_CARD = "This Card";
 	
 	//Need a whole list of effects 
 	

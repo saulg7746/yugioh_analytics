@@ -37,14 +37,12 @@ public class Action {
 		this.spell = new SpellSearchCriteria(c);
 		this.locationFrom = from;
 		this.LocationTo = to;
-		System.out.println(spell.toString());
 	}
 	public Action(String verb, MonsterSearchCriteria c, String from, String to){
 		this.verb = verb;
 		this.monster = new MonsterSearchCriteria(c);
 		this.locationFrom = from;
 		this.LocationTo = to;
-		System.out.println(monster.toString());
 	}
 	public Action(String verb, String thisCard, String from, String to){
 		this.verb = verb;
@@ -64,15 +62,10 @@ public class Action {
 		this.locationFrom = other.locationFrom;
 		this.LocationTo = other.LocationTo;
 		this.thisCard = other.thisCard;
-		System.out.println("Action(copy): I was invoked");
 		if(other.spell != null) {
-			System.out.println("Action(copy): I was invoked AND COPIED A SPELL");
 			this.spell = new SpellSearchCriteria(other.spell);
-			System.out.println(this.spell.toString());
 		}else if(other.monster != null) {
-			System.out.println("Action(copy): I was invoked AND COPIED A MONSTER");
 			this.monster = new MonsterSearchCriteria(other.monster);
-			System.out.println(this.monster.toString());
 		}
 		
 	}
@@ -91,8 +84,12 @@ public class Action {
 		String ret = "";
 		ret += verb + " ";
 		
-		if(locationFrom != "" && locationFrom == "Anywhere") {
+		if(locationFrom != "" && locationFrom == CardConstants.ANYWHERE) {
 			return "If " + thisCard + " is "+ verb + " to the " + LocationTo;
+		}else if(verb == CardConstants.SPECIAL_SUMMONED && thisCard == CardConstants.THIS_CARD){
+			return "If " + thisCard + " is " + verb; 
+		}else if (LocationTo == "" && monster != null){
+			return verb + " 1 " + monster.toString() + " monster from " + locationFrom;
 		}
 		
 		if(this.spell != null) {
@@ -100,7 +97,9 @@ public class Action {
 		}else if(this.monster != null) {
 			ret += "1 " + monster.toString() + " monster";
 		}
-		ret += " from " + locationFrom + " to " + LocationTo;
+		
+		ret += thisCard + " from " + locationFrom + " to " + LocationTo;
+		
 		
 		return ret;
 	}
