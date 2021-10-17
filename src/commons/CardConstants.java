@@ -73,6 +73,7 @@ public class CardConstants {
 	public static final String SENT			= "Sent";
 	public static final String ANYWHERE		= "Anywhere";
 	public static final String PLACE		= "Place";
+	public static final String Tribute		= "Tribute";
 	
 	
 	// Action Verbs (summon type)
@@ -83,8 +84,14 @@ public class CardConstants {
 	public static final String SYNCHRO_SUMMON 	= "Synchro Summon";
 	public static final String LINK_SUMMON 		= "Link Summon";
 	
+	
 	// Card Identifiers 
-	public static final String THIS_CARD = "This Card";
+	public static final String THIS_CARD 		= "This Card";
+	public static final String OTHER			= "Other";
+	public static final boolean INC				= true;
+	public static final boolean EXC		 		= false;
+	public static final String IF				= "If";
+	public static final String WHEN				= "When";
 	
 	//Need a whole list of effects 
 	

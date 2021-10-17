@@ -13,6 +13,8 @@ import searchCardCriteria.TrapSearchCriteria;
  *
  */
 public class Resolution extends Action{
+	
+	int quantity = 0;
 
 	public Resolution() {};
 	public Resolution(String verb, Card c, String from, String to){
@@ -23,6 +25,14 @@ public class Resolution extends Action{
 	}
 	public Resolution(String verb, MonsterSearchCriteria c, String from, String to){
 		super(verb, c, from, to);	
+	}
+	public Resolution(int qty, String verb, SpellSearchCriteria c, String from, String to){
+		super(verb, c, from, to);
+		this.quantity = qty;
+	}
+	public Resolution(int qty, String verb, MonsterSearchCriteria c, String from, String to){
+		super(verb, c, from, to);	
+		this.quantity = qty;
 	}
 	public Resolution(String verb, String thisCard, String from, String to){
 		super(verb, thisCard, from, to);
@@ -35,28 +45,33 @@ public class Resolution extends Action{
 	}
 	public Resolution(Resolution other) {
 		super(other);
+		this.quantity = other.quantity;
+		
 	}
 	
 	public String toString() {
 		String ret = "";
-		ret += "Resolution: " + verb + " ";
+		ret += "Resolution:";
 		
-		if(locationFrom != "" && locationFrom == CardConstants.ANYWHERE) {
-			return "Resolution: If " + thisCard + " is "+ verb + " to the " + LocationTo;
-		}else if(verb == CardConstants.SPECIAL_SUMMONED && thisCard == CardConstants.THIS_CARD){
-			return "Resolution: If " + thisCard + " is " + verb; 
-		}else if (LocationTo == "" && monster != null){
-			return "Resolution: " + verb + " 1 " + monster.toString() + " monster from " + locationFrom;
-		}
+		if(!verb.isEmpty())
+			ret += " " + verb;
 		
-		if(this.spell != null) {
-			ret +=  "1 " + spell.toString() + " spell";
-		}else if(this.monster != null) {
-			ret += "1 " + monster.toString() + " monster";
-		}
+		if(quantity != 0)
+			ret += " " + quantity;
+
+		if(!super.thisCard.isEmpty())
+			ret += " " + CardConstants.THIS_CARD;
+		else if(monster != null)
+			ret += " " + monster.toString();
+		else if(spell != null) 
+			ret += " " + spell.toString();
+		else if(trap != null) 
+			ret += " " + trap.toString();
 		
-		ret += thisCard + " from " + locationFrom + " to " + LocationTo;
-		
+		if(!locationFrom.isEmpty()) 
+			ret += " from " + locationFrom ;
+		if(!locationTo.isEmpty()) 
+			ret += " to " + locationTo;
 		
 		return ret;
 	}

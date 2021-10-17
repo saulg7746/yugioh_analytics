@@ -7,12 +7,19 @@ import searchCardCriteria.SpellSearchCriteria;
 import searchCardCriteria.TrapSearchCriteria;
 
 /**
- *  Thinking if we need this class at all, There might be a library with all types of
- *  costs, there might actually be a finite number. 
- * @author saulg
+ *  Ok, so this class will be necessary and we need to make sure that its handled correctly. 
+ *  this class will probably need a quantity and such
+ *  Examples of Cost;
+ *  	Discard 1 other HERO monster from Hand
+ *  	pay 1000 Life points
+ *  	Tribute this card 
+ *  	Discard 2 WATER Monsters
  *
  */
 public class Cost extends Action{
+	
+	int 	quantity 	= 0; 	// To be used for Discarding, Tributing, etc "Discard 1 other HERO monster"
+	boolean inclusive 	= true; // To be used if whatever cost can be used for this card itself. This will take care of the "other"
 	
 	public Cost() {};
 	public Cost(String verb, Card c, String from, String to){
@@ -21,9 +28,24 @@ public class Cost extends Action{
 	public Cost(String verb, SpellSearchCriteria c, String from, String to){
 		super(verb, c, from, to);
 	}
+	public Cost(String verb, int qty, SpellSearchCriteria c, String from, String to){
+		super(verb, c, from, to);
+		this.quantity = qty;
+	}
+
 	public Cost(String verb, MonsterSearchCriteria c, String from, String to){
 		super(verb, c, from, to);	
 	}
+	public Cost(String verb, int qty, MonsterSearchCriteria c, String from, String to){
+		super(verb, c, from, to);
+		this.quantity = qty;
+	}
+	public Cost(String verb, int qty, MonsterSearchCriteria c, String from, String to, boolean inc){
+		super(verb, c, from, to);
+		this.quantity = qty;
+		this.inclusive = inc;
+	}
+	
 	public Cost(String verb, String thisCard, String from, String to){
 		super(verb, thisCard, from, to);
 	}
@@ -35,28 +57,35 @@ public class Cost extends Action{
 	}
 	public Cost(Cost other) {
 		super(other);
+		this.quantity = other.quantity;
+		this.inclusive = other.inclusive;
 	}
 	
 	public String toString() {
 		String ret = "";
-		ret += "Cost: " + verb + " ";
+		ret += "Cost:";
 		
-		if(locationFrom != "" && locationFrom == CardConstants.ANYWHERE) {
-			return "Cost: If " + thisCard + " is "+ verb + " to the " + LocationTo;
-		}else if(verb == CardConstants.SPECIAL_SUMMONED && thisCard == CardConstants.THIS_CARD){
-			return "Cost: If " + thisCard + " is " + verb; 
-		}else if (LocationTo == "" && monster != null){
-			return "Cost: " + verb + " 1 " + monster.toString() + " monster from " + locationFrom;
-		}
+		if(!verb.isEmpty())
+			ret += " " + verb ;
 		
-		if(this.spell != null) {
-			ret +=  "1 " + spell.toString() + " spell";
-		}else if(this.monster != null) {
-			ret += "1 " + monster.toString() + " monster";
-		}
+		if(quantity != 0)
+			ret += " " + quantity ;
+		if(!inclusive)
+			ret += " " + CardConstants.OTHER;
 		
-		ret += thisCard + " from " + locationFrom + " to " + LocationTo;
+		if(!super.thisCard.isEmpty())
+			ret += " " +  CardConstants.THIS_CARD;
+		else if(monster != null)
+			ret += " " +  monster.toString();
+		else if(spell != null) 
+			ret += " " +  spell.toString();
+		else if(trap != null) 
+			ret += " " + trap.toString();
 		
+		if(!locationFrom.isEmpty()) 
+			ret += " from " + locationFrom ;
+		if(!locationTo.isEmpty()) 
+			ret += " to " + locationTo + " ";
 		
 		return ret;
 	}

@@ -14,6 +14,8 @@ import searchCardCriteria.TrapSearchCriteria;
  */
 public class ActivationReq extends Action{
 	
+	String timing_clause = "";
+	
 	public ActivationReq() {};
 	public ActivationReq(String verb, Card c, String from, String to){
 		super(verb, c, from, to);
@@ -27,6 +29,14 @@ public class ActivationReq extends Action{
 	public ActivationReq(String verb, String thisCard, String from, String to){
 		super(verb, thisCard, from, to);
 	}
+	public ActivationReq(String timing, String verb, MonsterSearchCriteria c, String from, String to){
+		super(verb, c, from, to);	
+		this.timing_clause = timing;
+	}
+	public ActivationReq(String timing, String verb, String thisCard, String from, String to){
+		super(verb, thisCard, from, to);
+		this.timing_clause = timing;
+	}
 	public ActivationReq(String verb, String from, String to){
 		super(verb, from, to);
 	}
@@ -35,28 +45,33 @@ public class ActivationReq extends Action{
 	}
 	public ActivationReq(ActivationReq other) {
 		super(other);
+		this.timing_clause = other.timing_clause;
 	}
 
 	
 	public String toString() {
 		String ret = "";
-		ret += "ActivationReq: " + verb + " ";
+		ret += "ActivationReq:";
 		
-		if(locationFrom != "" && locationFrom == CardConstants.ANYWHERE) {
-			return "Activation Req: If " + thisCard + " is "+ verb + " to the " + LocationTo;
-		}else if(verb == CardConstants.SPECIAL_SUMMONED && thisCard == CardConstants.THIS_CARD){
-			return "Activation Req: If " + thisCard + " is " + verb; 
-		}else if (LocationTo == "" && monster != null){
-			return "Activation Req " + verb + " 1 " + monster.toString() + " monster from " + locationFrom;
-		}
+		if(!timing_clause.isEmpty())
+			ret += " " + timing_clause;
 		
-		if(this.spell != null) {
-			ret +=  "1 " + spell.toString() + " spell";
-		}else if(this.monster != null) {
-			ret += "1 " + monster.toString() + " monster";
-		}
+
+		if(!super.thisCard.isEmpty())
+			ret += " " + CardConstants.THIS_CARD;
+		else if(monster != null)
+			ret += " " + monster.toString();
+		else if(spell != null) 
+			ret += " " + spell.toString();
+		else if(trap != null) 
+			ret += " " + trap.toString();
 		
-		ret += thisCard + " from " + locationFrom + " to " + LocationTo;
+		if(!verb.isEmpty())
+			ret +=  " is " + verb;
+		if(!locationFrom.isEmpty()) 
+			ret += " from " + locationFrom ;
+		if(!locationTo.isEmpty()) 
+			ret += " to " + locationTo ;
 		
 		
 		return ret;

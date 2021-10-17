@@ -37,7 +37,7 @@ public class SpellSearchCriteria{
 		if(nameExact != "")
 			return nameExact;
 		
-		ret += spellType + " \'" + nameContains + "\'";
+		ret += spellType + " \'" + nameContains + "\' spell";
 		
 		return ret;
 	}
