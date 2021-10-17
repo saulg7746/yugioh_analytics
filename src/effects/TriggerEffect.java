@@ -1,5 +1,8 @@
 package effects;
 import Actions.Action;
+import Actions.ActivationReq;
+import Actions.Cost;
+import Actions.Resolution;
 import commons.CardConstants;
 
 /* Trigger Effects ALWAYS have an activation requirement. Something has to happen for them to activate
@@ -11,21 +14,22 @@ import commons.CardConstants;
  */
 public abstract class TriggerEffect extends Effect {
 	
-	
-	Action activation = null;
-	Action effect = null;
-	
 	TriggerEffect(){
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.TRIGGER_EFFECT;
-		super.effect = null;
-
+		super.req = null;
+		super.res = null;
+		super.cost = null;
 	};
 	TriggerEffect(TriggerEffect other){
-		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
-		super.effectType = CardConstants.TRIGGER_EFFECT;
-		super.effect = new Action(other.effect);
+		super(other);
 	};
+	TriggerEffect(Cost c,  Resolution r, ActivationReq a){
+		super(c,r,a);
+	};
+	
+	
+	
 	
 	
 	

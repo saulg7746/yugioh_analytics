@@ -1,5 +1,8 @@
 package effects;
 import Actions.Action;
+import Actions.ActivationReq;
+import Actions.Cost;
+import Actions.Resolution;
 import commons.CardConstants;
 
 /* 
@@ -9,32 +12,32 @@ import commons.CardConstants;
  */
 public class OptionalEffect extends TriggerEffect {
 
+
+	
 	public OptionalEffect(){
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.TRIGGER_EFFECT;
-		super.activation = null;
 	};
-	public OptionalEffect(Action a,  Action b){
+	public OptionalEffect(Cost c,  Resolution r, ActivationReq a){
+		super(c,r,a);
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.TRIGGER_EFFECT;
-		super.activation = new Action(a);
-		super.effect = new Action(b);
 
 		
 	};
 	public OptionalEffect(OptionalEffect other ){
-		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
-		super.effectType = CardConstants.TRIGGER_EFFECT;
-		super.activation = new Action(other.activation);
-		super.effect = new Action(other.effect);
+		super(other);
 	};
 	
 	
 	public String toString() {
 		
-		String ret = "";
-		
-		ret += " ( Activation Req: " + super.activation.toString() + " ; Effect " + super.effect.toString() + " )";
+		String ret = super.getEffectType() + ": ";
+		if(req != null)
+			ret += " ( " + super.req.toString() + " ; " + super.res.toString() + " )";
+		else if (cost != null)
+			ret += " ( " + super.cost.toString() + " ; " + super.res.toString() + " )";
+
 		
 		return ret;
 	}

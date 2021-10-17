@@ -1,5 +1,8 @@
 package effects;
 import Actions.Action;
+import Actions.ActivationReq;
+import Actions.Cost;
+import Actions.Resolution;
 import commons.CardConstants;
 
 /* Trigger Effects ALWAYS have an activation requirement. Something has to happen for them to activate
@@ -12,46 +15,34 @@ import commons.CardConstants;
 public class IgnitionEffect extends Effect {
 	
 	
-	Action cost = null;
+	//Action cost = null;
 	
 	IgnitionEffect(){
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.IGNITION_EFFECT;
-		super.effect = null;
-		cost = null;
-	};
-	public IgnitionEffect(Action c, Action e){
-		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
-		super.effectType = CardConstants.IGNITION_EFFECT;
-		super.effect = new Action(e);
-		cost = new Action(c);
+		super.res = null;
+		super.cost = null;
+		super.req = null;
 	};
 	
-	public IgnitionEffect(boolean noCost, Action e){
+	public IgnitionEffect(Cost c, Resolution r, ActivationReq a){
+		super(c,r,a);
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.IGNITION_EFFECT;
-		super.effect = new Action(e);
-		if(noCost = true)
-		{
-			cost = null;
-		}
 	};
 	
 	IgnitionEffect(IgnitionEffect other){
-		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
-		super.effectType = CardConstants.IGNITION_EFFECT;
-		super.effect = new Action(other.effect);
-		cost = new Action(other.cost);
+		super(other);
 	};
 	
 	
 	public String toString() {
 			
-			String ret = "";
+			String ret = super.getEffectType() + ": ";
 			if(cost != null) {
-				ret += " ( Cost: " + cost.toString() + " ; Effect: " + super.effect.toString() + " )";
+				ret += " ( " + cost.toString() + " ; " + super.res.toString() + " )";
 			}else {
-				ret += " ( Cost: no cost ; Effect: " + super.effect.toString() + " )";
+				ret += " ( Cost: no cost ; " + super.res.toString() + " )";
 			}
 			
 			return ret;
