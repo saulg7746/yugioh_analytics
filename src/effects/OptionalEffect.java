@@ -18,12 +18,10 @@ public class OptionalEffect extends TriggerEffect {
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.TRIGGER_EFFECT;
 	};
-	public OptionalEffect(Cost c,  Resolution r, ActivationReq a){
-		super(c,r,a);
+	public OptionalEffect(ActivationReq a, Cost c,  Resolution r){
+		super(a,c,r);
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.TRIGGER_EFFECT;
-
-		
 	};
 	public OptionalEffect(OptionalEffect other ){
 		super(other);

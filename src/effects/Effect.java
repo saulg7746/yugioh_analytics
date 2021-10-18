@@ -30,7 +30,7 @@ public abstract class Effect {
 			req = new ActivationReq(other.req);
 
 	};
-	Effect(Cost c,  Resolution r, ActivationReq a){
+	Effect(ActivationReq a, Cost c,  Resolution r){
 		if(r != null)
 			res = new Resolution(r);
 		if(c != null)

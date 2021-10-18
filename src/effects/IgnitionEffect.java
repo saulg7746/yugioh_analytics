@@ -25,8 +25,8 @@ public class IgnitionEffect extends Effect {
 		super.req = null;
 	};
 	
-	public IgnitionEffect(Cost c, Resolution r, ActivationReq a){
-		super(c,r,a);
+	public IgnitionEffect(ActivationReq a, Cost c, Resolution r){
+		super(a,c,r);
 		super.spellSpeed = CardConstants.SPELL_SPEED_1;	
 		super.effectType = CardConstants.IGNITION_EFFECT;
 	};

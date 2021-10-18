@@ -17,29 +17,6 @@ public class ActivationReq extends Action{
 	String timing_clause = "";
 	
 	public ActivationReq() {};
-	public ActivationReq(String verb, Card c, String from, String to){
-		super(verb, c, from, to);
-	}
-	public ActivationReq(String verb, SpellSearchCriteria c, String from, String to){
-		super(verb, c, from, to);
-	}
-	public ActivationReq(String verb, MonsterSearchCriteria c, String from, String to){
-		super(verb, c, from, to);	
-	}
-	public ActivationReq(String verb, String thisCard, String from, String to){
-		super(verb, thisCard, from, to);
-	}
-	public ActivationReq(String timing, String verb, MonsterSearchCriteria c, String from, String to){
-		super(verb, c, from, to);	
-		this.timing_clause = timing;
-	}
-	public ActivationReq(String timing, String verb, String thisCard, String from, String to){
-		super(verb, thisCard, from, to);
-		this.timing_clause = timing;
-	}
-	public ActivationReq(String verb, String from, String to){
-		super(verb, from, to);
-	}
 	public ActivationReq(Action other) {
 		super(other);
 	}
@@ -47,6 +24,16 @@ public class ActivationReq extends Action{
 		super(other);
 		this.timing_clause = other.timing_clause;
 	}
+
+	public ActivationReq(String timing, String verb, String thisCard,
+			MonsterSearchCriteria m,
+			SpellSearchCriteria s, 
+			TrapSearchCriteria t,
+			String from, String to){
+		super(verb,thisCard,m,s,t,from,to);
+		this.timing_clause = timing;
+	}
+
 
 	
 	public String toString() {
