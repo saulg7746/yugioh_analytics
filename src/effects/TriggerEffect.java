@@ -24,8 +24,8 @@ public abstract class TriggerEffect extends Effect {
 	TriggerEffect(TriggerEffect other){
 		super(other);
 	};
-	TriggerEffect(ActivationReq a, Cost c,  Resolution r){
-		super(a,c,r);
+	TriggerEffect(ActivationReq a, Cost c,  Resolution r, String OPT){
+		super(a,c,r, OPT);
 	};
 	
 	

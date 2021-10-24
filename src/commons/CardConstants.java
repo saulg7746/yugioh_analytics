@@ -83,6 +83,9 @@ public class CardConstants {
 	public static final String FUSION_SUMMON 	= "Fusion Summon";
 	public static final String SYNCHRO_SUMMON 	= "Synchro Summon";
 	public static final String LINK_SUMMON 		= "Link Summon";
+	public static final String SOFT_OPT			= "Soft Once Per Turn";
+	public static final String HARD_OPT			= "Hard Once Per Turn";
+	public static final String ONE_EFFECT_PER_TURN = "effect per turn, and only once that turn";
 	
 	
 	// Card Identifiers 

@@ -29,19 +29,26 @@ public class CardLibrary{
 			new ArrayList<Effect>(Arrays.asList(
 					new OptionalEffect(	new ActivationReq(CardConstants.IF, CardConstants.SENT, CardConstants.THIS_CARD, null,null,null,"", CardConstants.GY),
 										null, 
-										new Resolution(1, CardConstants.ADD, "", HeroSearch,null,null, CardConstants.DECK, CardConstants.HAND)),
+										new Resolution(1, CardConstants.ADD, "", HeroSearch,null,null, CardConstants.DECK, CardConstants.HAND),
+										CardConstants.HARD_OPT),
 					new OptionalEffect(	new ActivationReq(CardConstants.IF, CardConstants.SPECIAL_SUMMONED, CardConstants.THIS_CARD, null,null,null,"", ""),
 										null, 
-										new Resolution(1, CardConstants.ADD, "", null, MaskChangeSearch,null, CardConstants.DECK, CardConstants.HAND)))), false, true);
+										new Resolution(1, CardConstants.ADD, "", null, MaskChangeSearch,null, CardConstants.DECK, CardConstants.HAND),
+										CardConstants.HARD_OPT))),
+										CardConstants.ONE_EFFECT_PER_TURN
+										);
 
 	public static final MainDeckMonster VisionHEROFaris = new MainDeckMonster("Vision HERO Faris", 5, CardConstants.DARK, 1600, 1800,
 			new HashSet<String>(Arrays.asList(CardConstants.WARRIOR)),
 			new ArrayList<Effect>(Arrays.asList(
 					new IgnitionEffect(	null, 
 										new Cost(1,CardConstants.EXC, CardConstants.DISCARD, "", HeroSearch, null,null, CardConstants.HAND, ""),
-										new Resolution(0,CardConstants.SPECIAL_SUMMON, CardConstants.THIS_CARD , null,null,null, CardConstants.HAND, CardConstants.FIELD)),
+										new Resolution(0,CardConstants.SPECIAL_SUMMON, CardConstants.THIS_CARD , null,null,null, CardConstants.HAND, CardConstants.FIELD),
+										CardConstants.HARD_OPT),
 					new OptionalEffect(	new ActivationReq(CardConstants.IF, CardConstants.SPECIAL_SUMMONED, CardConstants.THIS_CARD, null,null,null,"", ""), 
 										null,
-										new Resolution(1, CardConstants.PLACE, "", VisionHeroSearch,null,null, CardConstants.DECK, CardConstants.FIELD)))), false, true);
+										new Resolution(1, CardConstants.PLACE, "", VisionHeroSearch,null,null, CardConstants.DECK, CardConstants.FIELD),
+										CardConstants.HARD_OPT))),
+										"");
 
 }
