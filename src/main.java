@@ -1,7 +1,7 @@
 import java.util.*;
 
 import searchCardCriteria.MainDeckMonster;
-import searchCardCriteria.MonsterSearchCriteria;  
+import searchCardCriteria.MonsterSearchCriteria;
 import commons.CardLibrary;
 
 
@@ -11,10 +11,10 @@ public class main {
 	public static void main(String args[]) {
 		System.out.println("Hello World!");
 		
-//		MonsterSearchCriteria mon = new MonsterSearchCriteria("Stratos");
-//		mon.nameExact("Elemental HERO Stratos");
-//		MonsterSearchCriteria mon1 = new MonsterSearchCriteria(mon);
-//		System.out.println(mon1.getNameContains() + " " + mon1.getNameExact());
+		MonsterSearchCriteria mon = new MonsterSearchCriteria("Stratos");
+		mon.nameExact("Elemental HERO Stratos");
+		MonsterSearchCriteria mon1 = new MonsterSearchCriteria(mon);
+		System.out.println(mon1.getNameContains() + " " + mon1.getNameExact());
 //		mon1.setAttribute("light");
 //		mon.setAttribute("DARK");
 //
@@ -26,5 +26,6 @@ public class main {
 		
 		System.out.println(mist.toString());
 		System.out.println(faris.toString());
+		
 	}	
 }
