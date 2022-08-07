@@ -1,5 +1,6 @@
 package searchCardCriteria;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import commons.CardConstants;
@@ -25,4 +26,38 @@ public abstract class Monster implements Card{
 	boolean canBeNormalSummoned = false;
 	boolean SOPT = false;
 	boolean HOPT = false;
+	boolean used = false;
+	String OPT = "";
+	String effect_rstr = "";
+	
+	// Monster(String name, int lvl, String attr, int atk, int def, Set<String> type, ArrayList<Effect> effs, String rstr)
+	public Monster(String name, int lvl, String attr, int atk, int def, Set<String> type, ArrayList<Effect> effs, String rstr) {
+		this.name = name;
+		this.level = lvl;
+		this.rank = -1;
+		this.attribute = attr;
+		this.attack = atk;
+		this.defense = def;
+		this.type = new HashSet<String>(type);
+		this.effects = new ArrayList<Effect>(effs);
+		this.effect_rstr = rstr;
+		if(lvl < 5 )
+			this.canBeNormalSummoned = true;
+	}
+	public Monster(Monster m) {
+		this.name = m.name;
+		this.level = m.level;
+		this.rank = m.rank;
+		this.attribute = m.attribute;
+		this.attack = m.attack;
+		this.defense = m.defense;
+		if(m.type != null)
+			this.type = new HashSet<String>(m.type);
+		if(m.effects != null)
+			this.effects = new ArrayList<Effect>(m.effects);
+		this.OPT = m.OPT;
+		this.used = m.used; 
+		this.canBeNormalSummoned = m.canBeNormalSummoned;
+		
+	}
 }

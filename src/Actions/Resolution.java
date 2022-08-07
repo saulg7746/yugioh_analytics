@@ -17,29 +17,6 @@ public class Resolution extends Action{
 	int quantity = 0;
 
 	public Resolution() {};
-	public Resolution(String verb, Card c, String from, String to){
-		super(verb, c, from, to);
-	}
-	public Resolution(String verb, SpellSearchCriteria c, String from, String to){
-		super(verb, c, from, to);
-	}
-	public Resolution(String verb, MonsterSearchCriteria c, String from, String to){
-		super(verb, c, from, to);	
-	}
-	public Resolution(int qty, String verb, SpellSearchCriteria c, String from, String to){
-		super(verb, c, from, to);
-		this.quantity = qty;
-	}
-	public Resolution(int qty, String verb, MonsterSearchCriteria c, String from, String to){
-		super(verb, c, from, to);	
-		this.quantity = qty;
-	}
-	public Resolution(String verb, String thisCard, String from, String to){
-		super(verb, thisCard, from, to);
-	}
-	public Resolution(String verb, String from, String to){
-		super(verb, from, to);
-	}
 	public Resolution(Action other) {
 		super(other);
 	}
@@ -47,6 +24,14 @@ public class Resolution extends Action{
 		super(other);
 		this.quantity = other.quantity;
 		
+	}
+	public Resolution(int qty, String verb, String thisCard,
+			MonsterSearchCriteria m,
+			SpellSearchCriteria s, 
+			TrapSearchCriteria t,
+			String from, String to){
+		super(verb,thisCard,m,s,t,from,to);
+		this.quantity = qty;
 	}
 	
 	public String toString() {

@@ -22,43 +22,22 @@ public class Cost extends Action{
 	boolean inclusive 	= true; // To be used if whatever cost can be used for this card itself. This will take care of the "other"
 	
 	public Cost() {};
-	public Cost(String verb, Card c, String from, String to){
-		super(verb, c, from, to);
-	}
-	public Cost(String verb, SpellSearchCriteria c, String from, String to){
-		super(verb, c, from, to);
-	}
-	public Cost(String verb, int qty, SpellSearchCriteria c, String from, String to){
-		super(verb, c, from, to);
-		this.quantity = qty;
-	}
-
-	public Cost(String verb, MonsterSearchCriteria c, String from, String to){
-		super(verb, c, from, to);	
-	}
-	public Cost(String verb, int qty, MonsterSearchCriteria c, String from, String to){
-		super(verb, c, from, to);
-		this.quantity = qty;
-	}
-	public Cost(String verb, int qty, MonsterSearchCriteria c, String from, String to, boolean inc){
-		super(verb, c, from, to);
-		this.quantity = qty;
-		this.inclusive = inc;
-	}
-	
-	public Cost(String verb, String thisCard, String from, String to){
-		super(verb, thisCard, from, to);
-	}
-	public Cost(String verb, String from, String to){
-		super(verb, from, to);
-	}
-	public Cost(Action other) {
+		public Cost(Action other) {
 		super(other);
 	}
 	public Cost(Cost other) {
 		super(other);
 		this.quantity = other.quantity;
 		this.inclusive = other.inclusive;
+	}
+	public Cost(int qty, boolean inc, String verb, String thisCard,
+			MonsterSearchCriteria m,
+			SpellSearchCriteria s, 
+			TrapSearchCriteria t,
+			String from, String to){
+		super(verb,thisCard,m,s,t,from,to);
+		this.quantity = qty;
+		this.inclusive = inc;
 	}
 	
 	public String toString() {

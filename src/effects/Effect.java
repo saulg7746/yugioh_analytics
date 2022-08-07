@@ -10,7 +10,7 @@ public abstract class Effect {
 
 	int spellSpeed = -1;
 	String effectType = "";
-	
+	String OPT = "";
 	Cost cost = null;
 	ActivationReq req = null;
 	Resolution res = null;
@@ -30,13 +30,15 @@ public abstract class Effect {
 			req = new ActivationReq(other.req);
 
 	};
-	Effect(Cost c,  Resolution r, ActivationReq a){
+	Effect(ActivationReq a, Cost c,  Resolution r, String OPT){
 		if(r != null)
 			res = new Resolution(r);
 		if(c != null)
 			cost = new Cost(c);
 		if(a != null)
 			req = new ActivationReq(a);
+		
+		this.OPT = OPT;
 	};
 	
 	String getEffectType() {

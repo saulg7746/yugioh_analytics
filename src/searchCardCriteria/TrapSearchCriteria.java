@@ -11,7 +11,7 @@ public class TrapSearchCriteria{
 	
 	TrapSearchCriteria(){};
 	TrapSearchCriteria(String nameLike){nameContains = nameLike;};
-	TrapSearchCriteria(TrapSearchCriteria other){
+	public TrapSearchCriteria(TrapSearchCriteria other){
 		this.nameContains = other.nameContains;
 		this.nameExact = other.nameExact;
 		this.trapType = other.trapType;

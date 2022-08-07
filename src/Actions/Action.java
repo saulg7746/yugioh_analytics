@@ -35,36 +35,6 @@ public class Action {
 
 	
 	Action(){};
-	// This will have to do for now, I would rather have like a copy constructor and no like pointer to c
-	Action(String verb, Card c, String from, String to){
-		this.verb = verb;
-		card = c;
-	}
-	public Action(String verb, SpellSearchCriteria c, String from, String to){
-		this.verb = verb;
-		this.spell = new SpellSearchCriteria(c);
-		this.locationFrom = from;
-		this.locationTo = to;
-	}
-	public Action(String verb, MonsterSearchCriteria c, String from, String to){
-		this.verb = verb;
-		this.monster = new MonsterSearchCriteria(c);
-		this.locationFrom = from;
-		this.locationTo = to;
-	}
-	public Action(String verb, String thisCard, String from, String to){
-		this.verb = verb;
-		this.thisCard  = thisCard;
-		this.locationFrom = from;
-		this.locationTo = to;
-	}
-	public Action(String verb, String from, String to){
-		this.verb = verb;
-		card = null;
-		this.locationFrom = from;
-		this.locationTo = to;
-	}
-	
 	public Action(Action other){
 		this.verb = other.verb;
 		this.locationFrom = other.locationFrom;
@@ -75,7 +45,24 @@ public class Action {
 		}else if(other.monster != null) {
 			this.monster = new MonsterSearchCriteria(other.monster);
 		}
+	}
+	public Action(String verb, String thisCard,
+					MonsterSearchCriteria m,
+					SpellSearchCriteria s, 
+					TrapSearchCriteria t,
+					String from, String to){
 		
+		this.verb = verb;
+		this.thisCard = thisCard;
+		if(m != null)
+			this.monster = new MonsterSearchCriteria(m);
+		else if(s != null)
+			this.spell = new SpellSearchCriteria(s);
+		else if(t != null)
+			this.trap = new TrapSearchCriteria(t);
+			
+		this.locationFrom = from;
+		this.locationTo = to;
 	}
 	
 	public String toString() {

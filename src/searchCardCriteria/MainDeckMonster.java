@@ -14,34 +14,13 @@ public class MainDeckMonster extends Monster{
 	
 	
 	
-	public MainDeckMonster(String name, int lvl, String attr, int atk, int def, Set<String> type, ArrayList<Effect> effs, boolean SOPT, boolean HOPT) {
-		this.name = name;
-		this.level = lvl;
-		this.rank = -1;
-		this.attribute = attr;
-		this.attack = atk;
-		this.defense = def;
-		this.type = new HashSet<String>(type);
-		this.effects = new ArrayList<Effect>(effs);
-		this.SOPT = SOPT;
-		this.HOPT = HOPT;
-		if(lvl < 5 )
-			this.canBeNormalSummoned = true;
-		
+	public MainDeckMonster(String name, int lvl, String attr, int atk, int def, Set<String> type, ArrayList<Effect> effs,String rstr) {
+		super(name,lvl,attr,atk,def,type,effs,rstr);
 	}
 	
 	public MainDeckMonster(MainDeckMonster m)
 	{
-		this.name = m.name;
-		this.level = m.level;
-		this.rank = m.rank;
-		this.attribute = m.attribute;
-		this.attack = m.attack;
-		this.defense = m.defense;
-		this.type = new HashSet<String>(m.type);	
-		this.extraDeckMonster = false;
-		this.canBeNormalSummoned = false;
-		this.effects = new ArrayList<Effect>(m.effects); // String[] will be the effect plus any condition
+		super(m);
 	}
 	
 	public String getLocation() {
